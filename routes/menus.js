@@ -1,9 +1,15 @@
 var express = require('express');
+var Menu = require('../models/index').Menu
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-    res.send('menus!!!!');
+router.post('/list', function (req, res, next) {
+  Menu.findAll().then(function (data) {
+    res.json({
+      code: 0,
+      message: 'Successful!',
+      data
+    })
+  })
 });
 
 module.exports = router;
